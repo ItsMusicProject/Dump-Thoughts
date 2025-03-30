@@ -1,14 +1,25 @@
-document.getElementById("male").addEventListener("click", function() {
+// Select gender boxes and button
+const maleBox = document.getElementById("male");
+const femaleBox = document.getElementById("female");
+const continueBtn = document.getElementById("continueBtn");
+
+// Add event listeners for gender selection
+maleBox.addEventListener("click", function() {
   localStorage.setItem("selectedGender", "male");
-  document.getElementById("continueBtn").disabled = false;
+  maleBox.classList.add("selected");
+  femaleBox.classList.remove("selected");
+  continueBtn.disabled = false;
 });
 
-document.getElementById("female").addEventListener("click", function() {
+femaleBox.addEventListener("click", function() {
   localStorage.setItem("selectedGender", "female");
-  document.getElementById("continueBtn").disabled = false;
+  femaleBox.classList.add("selected");
+  maleBox.classList.remove("selected");
+  continueBtn.disabled = false;
 });
 
-document.getElementById("continueBtn").addEventListener("click", function() {
+// Continue button functionality
+continueBtn.addEventListener("click", function() {
   const gender = localStorage.getItem("selectedGender");
   if (gender) {
     window.location.href = "main-page.html";  // Redirect to the main note page
