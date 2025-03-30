@@ -4,7 +4,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gender Selection</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff6b6b, #f7d794); /* Bright vibrant gradient background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9); /* Slight white background transparency */
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 30px;
+      font-weight: bold;
+      font-family: 'Verdana', sans-serif;
+    }
+
+    .gender-options {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .gender-box {
+      width: 180px;
+      height: 180px;
+      border: 3px solid #fff;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .gender-box:hover {
+      transform: scale(1.1);
+      background-color: #ff7f50; /* Coral color on hover */
+    }
+
+    .gender-box.selected {
+      background-color: #4CAF50; /* Green background for selection */
+      color: white;
+      border: 3px solid #4CAF50;
+    }
+
+    .gender-text {
+      font-size: 1.6rem;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .continue-btn {
+      padding: 15px 30px;
+      background-color: #ff6347; /* Tomato color */
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .continue-btn:hover {
+      background-color: #e55347; /* Darker shade on hover */
+    }
+
+    .continue-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -22,6 +114,34 @@
     <button id="continueBtn" class="continue-btn" disabled>Continue</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Select gender boxes and button
+    const maleBox = document.getElementById("male");
+    const femaleBox = document.getElementById("female");
+    const continueBtn = document.getElementById("continueBtn");
+
+    // Add event listeners for gender selection
+    maleBox.addEventListener("click", function() {
+      localStorage.setItem("selectedGender", "male");
+      maleBox.classList.add("selected");
+      femaleBox.classList.remove("selected");
+      continueBtn.disabled = false;
+    });
+
+    femaleBox.addEventListener("click", function() {
+      localStorage.setItem("selectedGender", "female");
+      femaleBox.classList.add("selected");
+      maleBox.classList.remove("selected");
+      continueBtn.disabled = false;
+    });
+
+    // Continue button functionality
+    continueBtn.addEventListener("click", function() {
+      const gender = localStorage.getItem("selectedGender");
+      if (gender) {
+        window.location.href = "main-page.html";  // Redirect to the main note page
+      }
+    });
+  </script>
 </body>
 </html>
