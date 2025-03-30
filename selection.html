@@ -19,6 +19,8 @@
       align-items: center;
       height: 100vh;
       color: #333;
+      position: relative;
+      overflow: hidden;
     }
 
     .container {
@@ -27,6 +29,8 @@
       padding: 40px 60px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
     }
 
     .title {
@@ -45,23 +49,23 @@
     }
 
     .gender-box {
-      width: 180px;
-      height: 180px;
-      border: 3px solid #fff;
-      border-radius: 15px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       background: #fff;
       cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .gender-box:hover {
       transform: scale(1.1);
       background-color: #ff7f50; /* Coral color on hover */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .gender-box.selected {
@@ -96,9 +100,36 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    /* Particle animations for background */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      animation: float 5s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
   </style>
 </head>
 <body>
+  <!-- Create animated particles in the background -->
+  <div class="particle" style="width: 30px; height: 30px; top: 10%; left: 20%; animation-duration: 5s;"></div>
+  <div class="particle" style="width: 40px; height: 40px; top: 30%; left: 50%; animation-duration: 6s;"></div>
+  <div class="particle" style="width: 25px; height: 25px; top: 50%; left: 70%; animation-duration: 4.5s;"></div>
+  <div class="particle" style="width: 35px; height: 35px; top: 70%; left: 30%; animation-duration: 6.5s;"></div>
+  
   <div class="container">
     <h1 class="title">Choose Your Gender</h1>
     
